@@ -9,7 +9,7 @@ export const Container = styled.div`
     align-items: center;
     `
 
-export const LoginImage = styled.img`
+export const RegisterImage = styled.img`
 height: 100%;
 `
 
@@ -62,30 +62,6 @@ export const Input = styled.input`
   border-radius: 5px;
   border: ${props => (props.error ? '2px solid #cc1717' : 'none')};
   padding-left: 10px;
-`
-
-export const Button = styled.button`
-  width: 182px;
-  height: 37px;
-  background: #9758a6;
-  border-radius: 20px;
-  border: none;
-  cursor:pointer;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  text-align: center;
- margin-top: 75px;
- margin-bottom: 25px;
-  
-  &:hover{
-    opacity: 0.8;
-  }
-
-  &:active{
-    opacity: 0.6;
-  }
 `
 
 export const SignInLink = styled.p`

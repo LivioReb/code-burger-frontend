@@ -35,10 +35,16 @@ function Login () {
 
   const onsubmit = async clientData => {
     try {
-      const { data } = await api.post('sessions', {
+      const { data } = await toast.promise(api.post('sessions', {
         email: clientData.email,
         password: clientData.password
-      })
+      }),
+      {
+        pending: 'Verificando seus dados',
+        success: 'Seja bem-vindo(a)',
+        error: 'Verifique seu e-mail e senha🤯'
+      }
+      )
       putUserData(data) // Colocando os dados do usuário no contexto
     } catch (error) {
       console.error('Erro ao processar login:', error)

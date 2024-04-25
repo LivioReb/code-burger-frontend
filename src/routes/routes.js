@@ -1,18 +1,27 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
+import Home from '../containers/Home'
 import Login from '../containers/Login'
 import Register from '../containers/Register'
+import PrivateRoute from './private-route'
 
-function AppRoutes () {
+const AppRoutes = () => {
   return (
-        <Router>
-            <Routes>
-                <Route Component={Login} path="/login" />
-                <Route Component={Register} path="/cadastro" />
-            </Routes>
-        </Router>
-
+    <Router>
+      <Fragment>
+        <Routes>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route index element={<Home />} />
+          </Route>
+          <Route path="/cadastro" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <ToastContainer autoClose={2000} theme="colored"/>
+      </Fragment>
+    </Router>
   )
 }
+
 export default AppRoutes

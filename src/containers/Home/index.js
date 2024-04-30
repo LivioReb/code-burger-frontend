@@ -2,6 +2,7 @@ import React from 'react'
 
 import HeaderHome from '../../assets/headerHome.svg'
 import CategoryCarousel from '../../components/CategoryCarousel'
+import OffersCarousel from '../../components/OffersCarousel'
 import {
   Container,
   HomeImg
@@ -12,6 +13,7 @@ function Home () {
     <Container>
       <HomeImg src={HeaderHome} alt='Logo da home'/>
       <CategoryCarousel/>
+      <OffersCarousel/>
     </Container>
   )
 }

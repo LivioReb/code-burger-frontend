@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-elastic-carousel'
 
-import Category from '../../assets/categoriass.svg'
+import Offers from '../../assets/Ofertas.svg'
 import api from '../../services/api'
 import {
   Container,
@@ -11,15 +11,17 @@ import {
   Button
 } from './styles'
 
-function CategoryCarousel () {
-  const [categories, setCategories] = useState([])
+function OffersCarousel () {
+  const [offers, setOffers] = useState([])
   useEffect(() => {
-    async function loadCategories () {
-      const { data } = await api.get('categories')
+    async function loadOffers () {
+      const { data } = await api.get('products')
 
-      setCategories(data)
+      const onlyOffers = data.filter(product => product.offer)
+
+      setOffers(onlyOffers)
     }
-    loadCategories()
+    loadOffers()
   }, [])
 
   const breakPoints = [
@@ -32,13 +34,15 @@ function CategoryCarousel () {
 
   return (
     <Container>
-      <CategoryImg src={Category} alt='Logo da categoria'/>
+      <CategoryImg src={Offers} alt='Logo de Ofertas'/>
       <Carousel itemsToShow={5} style={{ width: '90%' }} breakPoints ={breakPoints}>
   {
-    categories && categories.map(category => (
-      <ContainerItems key={category.id}>
-        <Image src={category.url} alt='foto da categoria '/>
-        <Button>{category.name}</Button>
+    offers && offers.map(product => (
+      <ContainerItems key={product.id}>
+        <Image src={product.url} alt='foto do produto'/>
+        <p>{product.name}</p>
+        <p>{product.price}</p>
+        <Button>Peça agora</Button>
       </ContainerItems>
     ))
   }
@@ -47,4 +51,4 @@ function CategoryCarousel () {
   )
 }
 
-export default CategoryCarousel
+export default OffersCarousel

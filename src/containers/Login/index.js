@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
@@ -21,6 +21,7 @@ import {
 } from './styles'
 
 function Login () {
+  const navigate = useNavigate()
   const { putUserData, userData } = useUser()
 
   const schema = Yup.object().shape({
@@ -46,6 +47,10 @@ function Login () {
       }
       )
       putUserData(data) // Colocando os dados do usuário no contexto
+
+      setTimeout(() => {
+        navigate('/')
+      }, 1000)
     } catch (error) {
       console.error('Erro ao processar login:', error)
     }

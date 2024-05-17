@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
 background-color: #efefef;
@@ -40,7 +41,7 @@ display: flex;
 flex-direction: column;
 `
 
-export const Button = styled.button`
+export const Button = styled(Link)`
 margin-top: 16px;
 background: #9758a6;
 
@@ -65,5 +66,10 @@ cursor: pointer;
 &:active{
     opacity: 0.6;
 }
+
+text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 `

@@ -1,17 +1,21 @@
 import React from 'react'
 
 import CartImage from '../../assets/CartImage.svg'
-import { CartItems } from '../../components'
+import { CartItems, CartResume } from '../../components'
 import {
   Container,
-  CartImg
+  CartImg,
+  Wrapper
 } from './style'
 
 export function Cart () {
   return (
     <Container>
       <CartImg src={CartImage} alt='Logo do Cart'/>
+      <Wrapper>
       <CartItems/>
+      <CartResume/>
+      </Wrapper>
     </Container>
   )
 }

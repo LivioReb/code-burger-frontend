@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { useLocation } from 'react-router-dom'
 import HeaderProduct from '../../assets/headerMenu.svg'
 import { CardProduct } from '../../components'
 import api from '../../services/api'
@@ -12,7 +12,15 @@ import {
   ProductsContainer
 } from './style'
 
-export function Products () {
+
+
+export function Products (props) {
+
+ console.log(props)
+   
+  
+  
+
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])

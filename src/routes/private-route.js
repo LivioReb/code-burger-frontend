@@ -1,10 +1,18 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { Header } from '../components'; // Importe o Header corretamente
 
 const PrivateRoute = () => {
-  const isAuthenticated = localStorage.getItem('codeburger:userData')
+  const isAuthenticated = localStorage.getItem('codeburger:userData');
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
-}
+  return isAuthenticated ? (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  ) : (
+    <Navigate to="/login" />
+  );
+};
 
-export default PrivateRoute
+export default PrivateRoute;

@@ -12,36 +12,37 @@ import {
   ProductsContainer
 } from './style'
 
+export function Products() {
+  const location = useLocation();
+  const { state } = location;
+  let categoryId = 0;
 
+  if (state?.categoryId) {
+    categoryId = state.categoryId;
+  }
 
-export function Products (props) {
-
- console.log(props)
-   
   
-  
-
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
-  const [activeCategory, setActiveCategory] = useState([])
+  const [activeCategory, setActiveCategory] = useState(categoryId) 
 
   useEffect(() => {
-    async function loadCategories () {
+    async function loadCategories() {
       const { data } = await api.get('categories')
 
       const newCategories = [{ id: 0, name: 'Todas' }, ...data]
       setCategories(newCategories)
     }
 
-    async function loadProducts () {
+    async function loadProducts() {
       const { data: allProducts } = await api.get('products')
 
-      const newProduct = allProducts.map(product => {
-        return { ...product, formatedPrice: formatCurrency(product.price) }
+      const newProducts = allProducts.map(product => {
+        return { ...product, formattedPrice: formatCurrency(product.price) }
       })
 
-      setProducts(newProduct)
+      setProducts(newProducts)
     }
 
     loadProducts()
@@ -64,19 +65,23 @@ export function Products (props) {
     <Container>
       <ProductImg src={HeaderProduct} alt='Logo da Products'/>
       <CategoriesMenu>
-      {categories &&
-      categories.map(category =>
-      <CategoryButton type='button' isActiveCategory={activeCategory === category.id} key={category.id} onClick={() => { setActiveCategory(category.id) }}
-      >{category.name}
-      </CategoryButton>)}
+        {categories.map(category =>
+          <CategoryButton
+            type='button'
+            isActiveCategory={activeCategory === category.id}
+            key={category.id}
+            onClick={() => setActiveCategory(category.id)}
+          >
+            {category.name}
+          </CategoryButton>
+        )}
       </CategoriesMenu>
       <ProductsContainer>
-        {filteredProducts &&
-        filteredProducts.map(product => (
+        {filteredProducts.map(product => (
           <CardProduct key={product.id} product={product}/>
         ))}
-
       </ProductsContainer>
     </Container>
   )
 }
+

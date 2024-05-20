@@ -41,7 +41,7 @@ display: flex;
 flex-direction: column;
 `
 
-export const Button = styled(Link)`
+export const Button = styled.button`
 margin-top: 16px;
 background: #9758a6;
 

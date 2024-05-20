@@ -14,7 +14,7 @@ import {
 } from './style';
 
 export function Header() {
-  const {logout} = useUser()
+  const {logout, userData} = useUser()
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -28,6 +28,7 @@ const logoutUser =() =>{
     return currentPath.startsWith(path);
   };
 
+  
   return (
     <Container>
       <ContainerLeft>
@@ -47,7 +48,7 @@ const logoutUser =() =>{
         </PageLink>
 
         <ContainerText>
-          <p>Olá, Livio</p>
+          <p>Olá, {userData.name}</p>
           <PageLinkExit onClick={logoutUser}>Sair</PageLinkExit>
         </ContainerText>
       </ContainerRight>

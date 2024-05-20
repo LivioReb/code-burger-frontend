@@ -9,9 +9,11 @@ import {
   ProductName,
   ProductPrice
 } from './style'
+import { useNavigate } from 'react-router-dom'
 
 export function CardProduct ({ product }) {
   const { putProductInCart } = useCart()
+  const navigate = useNavigate()
   return (
     <Container>
         <Image src={product.url} alt='image do produto'/>
@@ -19,7 +21,11 @@ export function CardProduct ({ product }) {
         <ProductName>{product.name}</ProductName>
         <ProductPrice>{product.formatedPrice}</ProductPrice>
 
-        <Button onClick={() => putProductInCart(product)}>Adicionar</Button>
+        <Button onClick={() => {
+          putProductInCart(product)
+        navigate('/carrinho')
+        }
+        }>Adicionar</Button>
 
         </div>
     </Container>

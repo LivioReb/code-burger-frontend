@@ -47,10 +47,17 @@ export function Login () {
       }
       )
       putUserData(data) // Colocando os dados do usuário no contexto
+      
 
       setTimeout(() => {
-        navigate('/')
+        if (data.admin) {
+          navigate('/pedidos')
+        } else {
+          navigate('/')
+        }
       }, 1000)
+
+
     } catch (error) {
       console.error('Erro ao processar login:', error)
     }

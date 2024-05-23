@@ -54,6 +54,8 @@ export function OffersCarousel () {
         <Image src={product.url} alt='foto do produto'/>
         <p>{product.name}</p>
         <p>{product.formatedPrice}</p>
+        
+        
         <Button onClick={() => {
           putProductInCart(product)
           navigate('/carrinho')

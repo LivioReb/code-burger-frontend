@@ -14,30 +14,29 @@ import {
 } from './style';
 
 export function Header() {
-  const {logout, userData} = useUser()
+  const { logout, userData } = useUser();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  
-const logoutUser =() =>{
-  logout()
-  navigate('/login')
-}
+  const logoutUser = () => {
+    logout();
+    navigate('/login');
+  };
+
   const isActive = (path) => {
     const currentPath = location.pathname;
     return currentPath.startsWith(path);
   };
 
-  
   return (
     <Container>
       <ContainerLeft>
-        <PageLink onClick={() => navigate('/')} isactive={pathname === '/'}>Home</PageLink>
-        <PageLink onClick={() => navigate('/produtos')} isactive={isActive('/produtos')}>Ver Produtos</PageLink>
+        <PageLink onClick={() => navigate('/')} isactive={(pathname === '/').toString()}>Home</PageLink>
+        <PageLink onClick={() => navigate('/produtos')} isactive={isActive('/produtos').toString()}>Ver Produtos</PageLink>
       </ContainerLeft>
 
       <ContainerRight>
-        <PageLink onClick={() => navigate('/carrinho')} isactive={pathname === '/carrinho'}>
+        <PageLink onClick={() => navigate('/carrinho')} isactive={(pathname === '/carrinho').toString()}>
           <img src={Cart} alt='carrinho' />
         </PageLink>
 
@@ -53,5 +52,7 @@ const logoutUser =() =>{
         </ContainerText>
       </ContainerRight>
     </Container>
-  )
+  );
 }
+
+export default Header;

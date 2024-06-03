@@ -7,8 +7,9 @@ import * as Yup from 'yup'
 
 import RegisterImg from '../../assets/imgDeCadastro.svg'
 import Logo from '../../assets/Logo.svg'
-import { Button } from '../../components'
+import { Button, ErrorMessage } from '../../components'
 import api from '../../services/api'
+
 import {
   Container,
   RegisterImage,
@@ -16,7 +17,7 @@ import {
   Label,
   Input,
   SignInLink,
-  ErrorMessage
+  
 } from './styles'
 
 export function Register () {

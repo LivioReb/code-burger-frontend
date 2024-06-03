@@ -22,7 +22,7 @@ import api from '../../../services/api'
 
 import status from './order-status'
 
-export function Row({row}) {
+export function Row({row, setOrders, orders}) {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false)
 
@@ -30,6 +30,11 @@ export function Row({row}) {
     setIsLoading(true)
     try {
       await api.put(`orders/${id}`, {status})
+
+      const newOrders = orders.map(order => {
+        return order._id === id ? {...order, status} : order
+      })
+      setOrders(newOrders)
     } catch (error) {
       console.error(error)
     }finally{
@@ -57,7 +62,7 @@ export function Row({row}) {
         
         <TableCell>
           <ReactSelectStyle 
-          options={status}
+          options={status.filter(sts => sts.value !== 'Todos')}
           menuPortalTarget={document.body}
           placeholder= "Status"
           defaultValue={status.find(option => option.value === row.status) || null }
@@ -108,6 +113,8 @@ export function Row({row}) {
   );
 }
 Row.propTypes = {
+  orders: PropTypes.array,
+  setOrders: PropTypes.func,
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     orderId: PropTypes.string.isRequired,

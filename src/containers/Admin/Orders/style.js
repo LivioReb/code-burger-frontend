@@ -19,3 +19,16 @@ width: 250px;
 }
 
 `
+export const Menu = styled.div`
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin: 20px 0;
+`
+export const LinkMenu = styled.a`
+    color: #323050;
+    cursor: pointer;
+    font-weight: ${props => (props.isActiveStatus ? 'bold' : '400')};
+    border-bottom:${props => (props.isActiveStatus ? '2px solid #9758a6' : 'none')} ;
+    padding-bottom: 5px;
+`

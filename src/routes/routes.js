@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Home, Login, Products, Register, Cart, Admin } from '../containers';
 import PrivateRoute from './private-route';
+import paths from '../constants/paths';
 
 const AppRoutes = () => {
   return (
@@ -13,7 +14,10 @@ const AppRoutes = () => {
             <Route index element={<Home />} />
             <Route path="/produtos" element={<Products />} />
             <Route path="/carrinho" element={<Cart />} />
-            <Route path="/pedidos" element={<Admin />} />
+            <Route path={paths.Order} element={<Admin />} />
+            <Route path={paths.Products} element={<Admin />} />
+            <Route path={paths.NewProduct} element={<Admin />} />
+            <Route path={paths.EditProduct} element={<Admin />} />
           </Route>
           <Route path="/cadastro" element={<Register />} />
           <Route path="/login" element={<Login />} />

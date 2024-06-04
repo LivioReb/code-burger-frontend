@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiCodeBurger = axios.create({
-  baseURL: 'http://localhost:3001'
+  baseURL: 'https://codeburger-production-f8a0.up.railway.app/'
 })
 apiCodeBurger.interceptors.request.use(async config => {
   const userData = await localStorage.getItem('codeburger:userData')

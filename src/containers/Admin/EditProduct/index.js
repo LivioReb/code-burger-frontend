@@ -5,7 +5,8 @@ import {
   Label,
   Input,
   ButtonStyles,
-  LabelUpload
+  LabelUpload,
+  ContainerInput
 } from './style';
 import ReactSelect from 'react-select';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -24,28 +25,35 @@ function EditProduct() {
   const [categories, setCategories] = useState([])
   const navigate = useNavigate()
   const location = useLocation()
-  const product = location.state
-  console.log(product)
-  console.log(product.name)
 
 
+  const valueForm1 = location.state.product.name
+  const valueForm2 = location.state.product.price
+  const valueForm3 = location.state.product.category.name
+  const valueForm4 = location.state.product.offer
+  const product = location.state.product
+  const product2 = location.state
+ console.log(product)
+ console.log(product2)
 
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Digite o nome do produto'),
     price: Yup.string().required('Digite o preço do produto'),
-    category: Yup.object().required('Escolha uma categoria'),  
+    category: Yup.object().required('Escolha uma categoria'),
+    offer: Yup.bool()
+
   })
 
   const { register, handleSubmit, control, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   })
-  
 
 
-  const onSubmit = async data =>{
+
+  const onSubmit = async data => {
     const productDataFormData = new FormData()
-    
+
     productDataFormData.append('name', data.name)
     productDataFormData.append('price', data.price)
     productDataFormData.append('category_id', data.category.id)
@@ -59,8 +67,8 @@ function EditProduct() {
         success: 'Produto editado com sucesso',
         error: 'Falha ao editar produto'
       })
-  
-    }  catch (error) {
+
+    } catch (error) {
       console.error('Erro ao adicionar produto:', error);
     }
 
@@ -84,18 +92,16 @@ function EditProduct() {
 
   return (
     <Container>
-      <form noValidate onSubmit={handleSubmit(onSubmit)} >
+      <form noValidate onSubmit={handleSubmit(onSubmit)}  >
         <div>
           <Label>Nome</Label>
-          <Input type='text' {...register("name")} 
-         defaultValue={ product.name}/>
+          <Input type='text' {...register("name")} defaultValue={product.name} />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
         </div>
 
         <div>
           <Label>Preço</Label>
-          <Input type='number'  {...register("price")} 
-        defaultValue={ product.price }/>
+          <Input type='number'  {...register("price")} defaultValue={product.price} />
           <ErrorMessage>{errors.price?.message}</ErrorMessage>
         </div>
         <div>
@@ -118,25 +124,27 @@ function EditProduct() {
           <Controller
             name='category'
             control={control}
-            defaultValue={product.category }
+            defaultValue={product.category} 
             render={({ field }) => {
               return (
                 <ReactSelect
                   {...field}
+                  value={field.value} 
                   options={categories}
                   getOptionLabel={cat => cat.name}
                   getOptionValue={cat => cat.id}
                   placeholder="Categorias"
-                  defaultValue={product.category}
-                  />
+                />
               )
             }}
           ></Controller>
           <ErrorMessage>{errors.category?.message}</ErrorMessage>
         </div>
-          <input type='checkbox'  {...register("offer")} 
-      defaultChecked={product.offer } />
-        <ButtonStyles>Adicionar produto</ButtonStyles>
+        <ContainerInput>
+        <input type='checkbox'  {...register("offer")} defaultChecked={product.offer}/>
+        <Label>Produto em oferta? </Label>
+        </ContainerInput>
+        <ButtonStyles>Editar produto</ButtonStyles>
       </form>
     </Container>
   );

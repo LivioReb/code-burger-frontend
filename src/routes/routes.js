@@ -9,11 +9,11 @@ const AppRoutes = () => {
   return (
     <Router>
       <Fragment>
-        <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route index element={<Home />} />
+        <Routes>    
             <Route path="/produtos" element={<Products />} />
             <Route path="/carrinho" element={<Cart />} />
+            <Route index element={<Home />} />
+            <Route path="/" element={<PrivateRoute />}>
             <Route path={paths.Order} element={<Admin />} />
             <Route path={paths.Products} element={<Admin />} />
             <Route path={paths.NewProduct} element={<Admin />} />

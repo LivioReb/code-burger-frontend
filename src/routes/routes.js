@@ -10,10 +10,10 @@ const AppRoutes = () => {
     <Router>
       <Fragment>
         <Routes>
-          <Route path="/" element={<PrivateRoute />} />
-          <Route path="/produtos" element={<Products />} />
-          <Route path="/carrinho" element={<Cart />} />
-          <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />}>
+            <Route index element={<Home />} />
+            <Route path="/produtos" element={<Products />} />
+            <Route path="/carrinho" element={<Cart />} />
             <Route path={paths.Order} element={<Admin />} />
             <Route path={paths.Products} element={<Admin />} />
             <Route path={paths.NewProduct} element={<Admin />} />

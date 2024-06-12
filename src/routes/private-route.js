@@ -12,13 +12,15 @@ const PrivateRoute = () => {
   // Verifica se o usuário está autenticado e se é um administrador
   const isAdmin = isAuthenticated && userData && userData.admin;
 
-  return isAuthenticated ? (
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
     <>
-      <Header/>
-      {isAdminRoute && !isAdmin ? <Navigate to="/" /> : <Outlet />}
+      {(!isAdminRoute || isAdmin) && <Header />}
+      <Outlet />
     </>
-  ) : (
-    <Navigate to="/login" />
   );
 };
 

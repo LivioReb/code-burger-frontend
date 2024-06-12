@@ -16,9 +16,13 @@ const PrivateRoute = () => {
     return <Navigate to="/login" />;
   }
 
+  if (isAdminRoute && !isAdmin) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
-      {(!isAdminRoute || isAdmin) && <Header />}
+      <Header />
       <Outlet />
     </>
   );

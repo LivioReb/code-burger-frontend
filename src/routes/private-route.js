@@ -14,7 +14,7 @@ const PrivateRoute = () => {
 
   return isAuthenticated ? (
     <>
-      <Header />
+      <Header/>
       {isAdminRoute && !isAdmin ? <Navigate to="/" /> : <Outlet />}
     </>
   ) : (

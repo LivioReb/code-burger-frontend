@@ -7,7 +7,10 @@ const PrivateRoute = () => {
   const userData = isAuthenticated ? JSON.parse(isAuthenticated) : null;
   const location = useLocation();
 
-  const isAdminRoute = location.pathname === "/pedidos" || "/listar-produtos";
+  const isAdminRoute = location.pathname === "/pedidos" || location.pathname === "/listar-produtos";
+  console.log('Current path:', location.pathname); // Log do caminho atual
+  console.log('isAdminRoute:', isAdminRoute); // Log se é uma rota de admin
+  console.log('User Data:', userData); // Log dos dados do usuário
 
   // Verifica se o usuário está autenticado e se é um administrador
   const isAdmin = isAuthenticated && userData && userData.admin;

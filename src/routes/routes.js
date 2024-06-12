@@ -9,16 +9,16 @@ const AppRoutes = () => {
   return (
     <Router>
       <Fragment>
-        <Routes>    
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/produtos" element={<Products />} />
           <Route path="/carrinho" element={<Cart />} />
-          <Route index element={<Home />} />
-            <Routes path="/" element={<PrivateRoute />}>
-              <Route path={paths.Order} element={<Admin />} />
-              <Route path={paths.Products} element={<Admin />} />
-              <Route path={paths.NewProduct} element={<Admin />} />
-              <Route path={paths.EditProduct} element={<Admin />} />
-            </Routes> 
+          <Route element={<PrivateRoute />}>
+            <Route path={paths.Order} element={<Admin />} />
+            <Route path={paths.Products} element={<Admin />} />
+            <Route path={paths.NewProduct} element={<Admin />} />
+            <Route path={paths.EditProduct} element={<Admin />} />
+          </Route>
           <Route path="/cadastro" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

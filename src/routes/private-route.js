@@ -7,20 +7,18 @@ const PrivateRoute = () => {
   const userData = isAuthenticated ? JSON.parse(isAuthenticated) : null;
   const location = useLocation();
 
-  const isAdminRoute = location.pathname.startsWith('/admin') || location.pathname.startsWith('/pedidos');
+  const isAdminRoute = location.pathname === "/pedidos" || "/listar-produtos";
 
   // Verifica se o usuário está autenticado e se é um administrador
   const isAdmin = isAuthenticated && userData && userData.admin;
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
-  return (
+  return isAuthenticated ? (
     <>
-      {(!isAdminRoute || isAdmin) && <Header />}
-      <Outlet />
+      {!isAdminRoute && <Header />}
+      {!isAdmin && isAdminRoute ? <Navigate to="/" /> : <Outlet />}
     </>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 

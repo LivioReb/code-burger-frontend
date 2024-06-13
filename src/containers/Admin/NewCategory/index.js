@@ -86,7 +86,7 @@ function NewCategory() {
           </LabelUpload>
           <ErrorMessage>{errors.file?.message}</ErrorMessage>
         </div>
-        <ButtonStyles type="submit">Adicionar Categoria</ButtonStyles> {/* Correção: adicionar type="submit" */}
+        <ButtonStyles >Adicionar Categoria</ButtonStyles> {/* Correção: adicionar type="submit" */}
       </form>
     </Container>
   );

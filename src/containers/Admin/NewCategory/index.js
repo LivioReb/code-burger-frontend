@@ -40,7 +40,7 @@ function NewCategory() {
     })
   
 
-      const { register, handleSubmit,  formState: { errors } } = useForm({
+      const { register, handleSubmit, control, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
       })
     

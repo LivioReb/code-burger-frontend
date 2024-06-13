@@ -7,6 +7,7 @@ import ListProducts from "./ListProducts";
 import paths from "../../constants/paths";
 import NewProduct from "./NewProducts";
 import EditProduct from "./EditProduct";
+import NewCategory from "./NewCategory";
 
 export function Admin() {
   const location = useLocation();
@@ -21,7 +22,8 @@ export function Admin() {
         { path === paths.Order && <Orders/>}
         { path === paths.Products &&  <ListProducts />}   
         { path === paths.NewProduct &&  <NewProduct />}      
-        { path === paths.EditProduct &&  <EditProduct />}      
+        { path === paths.EditProduct &&  <EditProduct />}   
+        { path === paths.NewCategory &&  <NewCategory/>}      
       </ContainerItems>
     </Container>
   );

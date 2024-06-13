@@ -18,6 +18,7 @@ const AppRoutes = () => {
             <Route path={paths.Products} element={<Admin />} />
             <Route path={paths.NewProduct} element={<Admin />} />
             <Route path={paths.EditProduct} element={<Admin />} />
+            <Route path={paths.NewCategory} element={<Admin />} />
           </Route>
           <Route path="/cadastro" element={<Register />} />
           <Route path="/login" element={<Login />} />

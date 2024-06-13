@@ -19,7 +19,6 @@ import { toast } from 'react-toastify';
 
 function NewCategory() {
     
-    const [categorys, setCategorys] = useState()
     const [fileName, setFileName] = useState(null)
     
     const schema = Yup.object().shape({
@@ -41,7 +40,7 @@ function NewCategory() {
     })
   
 
-      const { register, handleSubmit, control, formState: { errors } } = useForm({
+      const { register, handleSubmit,  formState: { errors } } = useForm({
         resolver: yupResolver(schema)
       })
     
@@ -71,7 +70,7 @@ function NewCategory() {
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
                 <Label>Nome da Categoria</Label>
-                <Input type='text' {...registrar("name")} />
+                <Input type='text' {...register("name")} />
                 <ErrorMessage>{errors.name?.message}</ErrorMessage>
                 </div>
 
@@ -93,6 +92,7 @@ function NewCategory() {
             />
 
                 </LabelUpload>
+                <ErrorMessage>{errors.file?.message}</ErrorMessage>
                 </div>
                 <ButtonStyles>Adicionar Categoria</ButtonStyles>
             </form>
